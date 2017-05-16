@@ -1,26 +1,29 @@
-#coding:utf8
+# coding:utf8
 import cv2
 import numpy as np
-
 from core.plate_locate import PlateLocate
 from core.plate_detect import PlateDetect
 from core.chars_segment import CharsSegment
 from core.chars_recognise import CharsRecognise
 from core.chars_identify import CharsIdentify
 from core.plate_judge import PlateJudge
-
 from train.net.lenet import Lenet
 from train.net.judgenet import Judgenet
 from train.cnn_train import eval_model
 from train.dataset import DataSet
-
 from util.figs import imshow
 from util.read_etc import index2str
 
+
 def test_plate_locate():
+    '''
+    车牌定位
+    :return:
+    '''
     print("Testing Plate Locate")
 
     file = "resources/image/test.jpg"
+    # file = "/Users/huijunzhang/Downloads/pic/pic2.jpg"
 
     src = cv2.imread(file)
 
@@ -33,7 +36,12 @@ def test_plate_locate():
         for res in result:
             imshow("plate locate", res)
 
+
 def test_plate_judge():
+    '''
+    车牌判断
+    :return:
+    '''
     print("Testing Plate Judge")
 
     file = "resources/image/plate_judge.jpg"
@@ -55,7 +63,12 @@ def test_plate_judge():
         for res in judge_result:
             imshow("plate judge", res)
 
+
 def test_plate_detect():
+    '''
+    车牌检测
+    :return:
+    '''
     print("Testing Plate Detect")
 
     file = "resources/image/plate_detect.jpg"
@@ -70,7 +83,12 @@ def test_plate_detect():
         for res in result:
             imshow("plate detect", res)
 
+
 def test_char_segment():
+    '''
+    字符分隔
+    :return:
+    '''
     print("Testing Chars Segment")
 
     file = "resources/image/chars_segment.jpg"
@@ -84,7 +102,12 @@ def test_char_segment():
         for i in range(len(result)):
             imshow("plate segment " + str(i), result[i])
 
+
 def test_chars_identify():
+    '''
+    字符鉴别
+    :return:
+    '''
     print("Testing Chars Identify")
 
     file = "resources/image/chars_identify.jpg"
@@ -112,7 +135,12 @@ def test_chars_identify():
     else:
         print("Identify Not Correct")
 
+
 def test_chars_recognise():
+    '''
+    字符识别
+    :return:
+    '''
     print("Testing Chars Recognise")
 
     file = "resources/image/chars_recognise.jpg"
@@ -124,7 +152,12 @@ def test_chars_recognise():
 
     print("Chars Recognise: ", cr.charsRecognise(src))
 
+
 def test_plate_recognize():
+    '''
+    车牌识别
+    :return:
+    '''
     print("Testing Plate Recognize")
 
     file = "resources/image/test.jpg"
@@ -138,13 +171,13 @@ def test_plate_recognize():
     pd.plateDetect(src, result_detection)
 
     cr = CharsRecognise()
-    
+
     for res in result_detection:
         imshow("Plate Recognize", res)
         print("Chars Recognise: ", cr.charsRecognise(res))
 
-def test_cnn_val():
 
+def test_cnn_val():
     dataset_params = {
         'batch_size': -1,
         'path': 'resources/train_data/chars',
@@ -166,12 +199,12 @@ def test_cnn_val():
                            model_dir="train/model/chars/models/")
 
     print("Label: {}({}), Pred: {}({})".format(label[0], index2str[label[0]], pred[0], index2str[pred[0]]))
-    #imshow("tmp", image[0])
+    # imshow("tmp", image[0])
 
-    print("Accuary: {:.2f}%".format(acc*100))
+    print("Accuary: {:.2f}%".format(acc * 100))
+
 
 def test_judge_val():
-
     dataset_params = {
         'batch_size': -1,
         'path': 'resources/train_data/whether_car',
@@ -194,3 +227,7 @@ def test_judge_val():
     print("Label: {}, Pred: {}".format(label[0], pred[0]))
 
     print("Accuary: {:.2f}%".format(acc * 100))
+
+
+if __name__ == '__main__':
+    test_plate_locate()

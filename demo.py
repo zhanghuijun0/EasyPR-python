@@ -1,4 +1,4 @@
-#coding:utf8
+# coding:utf8
 from plate import *
 from accuracy_test import *
 
@@ -6,17 +6,17 @@ from train.cnn_train import identify_train
 from train.judge_train import judge_train
 
 main_menu = (
-    '-'*8 + '\n' +
+    '-' * 8 + '\n' +
     '选择测试:\n' +
     '1. 功能测试;\n' +
     '2. 准确度测试;\n' +
     '3. JUDGE训练;\n' +
     '4. CNN相关;\n' +
-    '-'*8
+    '-' * 8
 )
 
 test_menu = (
-    '-'*8 + '\n' +
+    '-' * 8 + '\n' +
     '功能测试:\n' +
     '1. test plate_locate(车牌定位);\n' +
     '2. test plate_judge(车牌判断);\n' +
@@ -25,43 +25,45 @@ test_menu = (
     '5. test chars_identify(字符鉴别);\n' +
     '6. test chars_recognise(字符识别);\n' +
     '7. test plate_recognize(车牌识别);\n' +
-    '-'*8
+    '-' * 8
 )
 
 batch_menu = (
-    '-'*8 + '\n' +
+    '-' * 8 + '\n' +
     '批量测试:\n' +
     '1. 普通情况测试;\n' +
     '2. 极端情况测试;\n' +
-    '-'*8
+    '-' * 8
 )
 
 cnn_menu = (
-    '-'*8 + '\n' +
+    '-' * 8 + '\n' +
     'cnn相关:\n' +
     '1. cnn训练;\n' +
     '2. cnn测试(测试集);\n' +
-    '-'*8
+    '-' * 8
 )
 
 judge_menu = (
-    '-'*8 + '\n' +
+    '-' * 8 + '\n' +
     'judge相关:\n' +
     '1. judge训练;\n' +
     '2. judge测试(测试集);\n' +
-    '-'*8
+    '-' * 8
 )
 
 dir_list = ['resources/image/general_test', 'resources/image/native_test']
+
+
 def command_line_handler():
-    while(1):
+    while (1):
         print(main_menu)
         select = raw_input()
         main_op[select]()
 
 
 def test_main():
-    while(1):
+    while (1):
         print(test_menu)
         select = raw_input()
         test_op[select]()
@@ -71,7 +73,7 @@ def test_batch():
     while (1):
         print(batch_menu)
         select = raw_input()
-        assert(select == '1' or select == '2')
+        assert (select == '1' or select == '2')
         accuracy_test(dir_list[int(select) - 1])
 
 
@@ -95,6 +97,7 @@ def cnn_rel():
         test_cnn_val()
     else:
         print("Error choice")
+
 
 main_op = {
     '1': test_main,
