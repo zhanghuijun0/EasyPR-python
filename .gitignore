@@ -3,3 +3,7 @@
 train_data/
 .idea
 *.log
+etc/
+models/
+*.FH
+*.local
