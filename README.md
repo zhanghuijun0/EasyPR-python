@@ -1,3 +1,5 @@
+
+
 # EasyPR-python
 EasyPR-python by fh
 
@@ -31,7 +33,7 @@ Use a cnn network to judge whether a car.
 - [x] char identify ( cnn 99.63%)
 
 ## How to train identify
-unzip `resources/train_data/chars.7z`
+7z x `resources/train_data/chars.7z`
 
 `python demo.py`
 
